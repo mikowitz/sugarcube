@@ -76,6 +76,7 @@ class Symbol
     attr :cg_linejoinstyles
 
     attr :gesture_recognizer_states
+    attr :swipe_gesture_recognizer_directions
   end
 
   @devices = {
@@ -522,6 +523,13 @@ class Symbol
     recognized: UIGestureRecognizerStateRecognized,
   }
 
+  @swipe_gesture_recognizer_directions = {
+    left:   UISwipeGestureRecognizerDirectionLeft, 
+    right:  UISwipeGestureRecognizerDirectionRight,
+    up:     UISwipeGestureRecognizerDirectionUp, 
+    down:   UISwipeGestureRecognizerDirectionDown
+  }
+
   private
   def sugarcube_look_in(here)
     return here[self] if here.has_key? self
@@ -722,6 +730,11 @@ class Symbol
     sugarcube_look_in(Symbol.gesture_recognizer_states)
   end
   alias uigesturestate uigesturerecognizerstate
+
+  def uiswipegesturerecognizerdirection
+    sugarcube_look_in(Symbol.swipe_gesture_recognizer_directions)
+  end
+  alias uiswipedirection uiswipegesturerecognizerdirection
 
   def uifont(size=nil)
     size ||= UIFont.systemFontSize
